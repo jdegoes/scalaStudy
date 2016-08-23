@@ -28,9 +28,11 @@ object Main {
     }
 
   def sameKind(a: PlayerChoice, b: PlayerChoice, c: PlayerChoice): Boolean =
+    // You can also write this as (a == b && b == c)
     if (a == Xs && b == Xs && c == Xs || a == Os && b == Os && c == Os) true else false
 
   def checkForEnd(userInput: CurrentInput, state: GameState): Either[UserError, (CurrentInput, GameState)]  = {
+    // This function has a lot of boilerplate — I'd recommend seeing if you can find a way to reduce it
     state.board match {
       case Board(Col(
         Row(Some(a), Some(b), Some(c)),
@@ -93,6 +95,7 @@ object Main {
   }
 
   def update(userInput: CurrentInput, state: GameState): Either[UserError, GameState]  = {
+    // Same here — see if there's a way you can simplify some of this (it's not easy, though, unless you change the board matrix representation)
     userInput match {
       case CurrentInput(1,1) =>
         if (state.board.matrix.top.left != None)
